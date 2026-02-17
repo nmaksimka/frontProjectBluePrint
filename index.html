@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeBlock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">Logo(Изменим)</div>
+        <div class="controls">
+            <button class="btn btn-run" onclick="runProgram()">Запустить</button>
+            <button class="btn btn-reset" onclick="resetProgram()">Сброс</button>
+            <button class="btn btn-clear" onclick="clearAll()">Очистить</button>
+        </div>
+    </div>
+
+    <div class="main-area">
+        <div class="node-pallete">
+            <div class="node-category">
+                <div class="category-title">Переменные</div>
+
+                <div class="node-item" draggable="true" data-node-type="var-declare">
+                    <span class="node-name">Создать переменную</span>
+                </div>
+                <div class="node-item" draggable="true" data-node-type="var-assign">
+                    <span class="node-name">Присвоить значение</span>
+                </div>
+                <div class="node-item" draggable="true" data-node-type="var-get">
+                    <span class="node-name">Получить переменную</span>
+                </div>
+            </div>
+
+            <div class="node-category">
+                <div class="category-title">Вычисления</div>
+                <div class="node-item" draggable="true" data-node-type="math-plus">
+                    <span class="node-name">Сложение</span>
+                </div>
+                <div class="node-item" draggable="true" data-node-type="math-minus">
+                    <span class="node-name">Вычитание</span>
+                </div>
+                <div class="node-item" draggable="true" data-node-type="math-multiple">
+                    <span class="node-name">Умножение</span>
+                </div>
+                <div class="node-item" draggable="true" data-node-type="math-divide">
+                    <span class="node-name">Деление</span>
+                </div>
+                <div class="node-item" draggable="true" data-node-type="math-reminder">
+                    <span class="node-name">Остаток от деления</span>
+                </div>
+            </div>
+
+            <div class="node-category">
+                <div class="category-title">Сравнения</div>
+                <div class="node-item" draggable="true" data-node-type="control-equals">
+                    <span class="node-name">Равно</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-not-equals">
+                    <span class="node-name">Не равно</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-more">
+                    <span class="node-name">Больше</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-less">
+                    <span class="node-name">Меньше</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-more-or-equals">
+                    <span class="node-name">Больше или равно</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-less-or-equals">
+                    <span class="node-name">Меньше или равно</span>
+                </div>
+            </div>
+
+            <div class="node-category">
+                <div class="category-title">Управления</div>
+                <div class="node-item" draggable="true" data-node-type="control-if">
+                    <span class="node-name">Если</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-if-else">
+                    <span class="node-name">Если-иначе</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-for">
+                    <span class="node-name">Цикл for</span>
+                </div>
+                
+                <div class="node-item" draggable="true" data-node-type="control-while">
+                    <span class="node-name">Цикл</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="control-for-each">
+                    <span class="node-name">Цикл forEach</span>
+                </div>
+            </div>
+
+            <div class="node-category">
+                <div class="category-title">Массивы</div>
+                <div class="node-item" draggable="true" data-node-type="list-add">
+                    <span class="node-name">Создать массив</span>
+                </div>
+                
+                <div class="node-item" draggable="true" data-node-type="list-index">
+                    <span class="node-name">Элемент массива</span>
+                </div>
+
+                <div class="node-item" draggable="true" data-node-type="list-set">
+                    <span class="node-name">Установить элемент</span>
+                </div>
+            </div>
+
+            <div class="node-category">
+                <div class="category-title">Вывод</div>
+                <div class="node-item" draggable="true" data-node-type="print">
+                    <span class="node-name">Вывести</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="graph-area" id="graphArea">
+            <div class="graph-grid" id="graphGrid"></div>
+            <!--Отрисовка схемы-->
+        </div>
+
+        <div class="graph-nodes" id="graphNodes">
+            <!--Сюда из js блоки-->
+        </div>
+
+        <div class="graph-wires" id="graphWires">
+            <svg width="100%" height="100%" id="wireCanvas"></svg>
+        </div>
+
+        <div class="inspector-panel">
+            <div class="inspector-tabs">
+                <button class="tab" data-tab="variables">Переменные</button>
+                <button class="tab" data-tab="output">Вывод</button>
+                <button class="tab" data-tab="errors">Ошибки</button>
+            </div>
+
+            <div class="tab-content active" id="inspectorTab">
+                <div class="inspector-empty">
+                    Выберите блок для просмотра свойств
+                </div>
+            </div>
+
+            <div class="tab-content" id="variablesTab">
+                <div class="variables-list" id="variablesList"></div>
+            </div>
+
+            <div class="tab-content" id="outputTab">
+                <div class="output-list" id="outputList"></div>
+            </div>
+            
+            <div class="tab-content" id="errorsTab">
+                <div class="errors-list" id="errorsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-item">Блоки: <span id="nodeCount">0</span></div>
+        <div class="status-item">Соединения: <span id="wireCount">0</span></div>
+        <div class="status-item">Статус: <span id="statusText">Готов</span></div>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>

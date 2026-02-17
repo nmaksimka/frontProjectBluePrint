@@ -1,0 +1,93 @@
+:root {
+    --bg-dark: #060806;/* Темный фон */
+    --bg-panel: #303030; /* Фон панелей (чуть светлее) */
+    --bg-node: #3d3d3d;/* Фон блоков */
+    --border-color: #555; /* Цвет границ */
+    --text-color: #fff;/* Белый текст */
+    --text-dim: #aaa;/* Серый текст (не такой яркий) */
+    --accent-blue: #0078d7;/* Синий акцент */
+    --accent-green: #4caf50;/* Зеленый */
+    --accent-red: #f44336;/* Красный */
+    --accent-orange: #ff9800;/* Оранжевый */
+    --accent-purple: #9c27b0;/* Фиолетовый */
+    --wire-color: #ffd700;/* Золотой для проводов */
+    --grid-color: #333;/* Цвет сетки */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-color);
+    display: flex;
+    height: 100vh; 
+    flex-direction: column;
+}
+
+top-bar {
+    background: var(--grid-color);
+    color: whitesmoke;
+    padding: 20px;
+    text-align: center;
+}
+
+.main-area {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+    padding: 10px;
+}
+
+.node-pallete {
+    width: 250px;
+    background: var(--border-color);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.graph-area {
+    flex: 1;
+    background: var(--bg-panel);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.inspector-panel {
+    width: 250px;
+    background: var(--border-color);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.status-bar {
+    background: var(--grid-color);
+    color: var(--text-color);
+    padding: 10px;
+    text-align: center;
+}
+
+.node-category {
+    margin-bottom: 20px;
+}
+
+.node-item {
+    cursor: grab;
+    border: 2px solid #0f1f10;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+.node-item:hover {
+    transform: translateX(3px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
