@@ -86,5 +86,4 @@ function createDraggableBlock(shapeType) {
     return block;[]
 }
 
-
 new DragAndDrop();
